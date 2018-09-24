@@ -1,6 +1,10 @@
 # City-scale-Road-Audit
+Website - https://cvit.iiit.ac.in/research/projects/cvit-projects/city-scale-road-audit
 
+## Publications
+Accepted at IROS. Will be published soon!!
 
+If you use this software in your research, please cite our publications:
 ## Packages
 For instructions please refer to the README on each folder:
 
@@ -11,7 +15,7 @@ For instructions please refer to the README on each folder:
 
 * [**The dataset**](https://www.cityscapes-dataset.com/): Download the "leftImg8bit" for the RGB images and the "gtFine" for the labels.
 * [**Python 3.6**](https://www.python.org/): If you don't have Python3.6 in your system, I recommend installing it with [Anaconda](https://www.anaconda.com/download/#linux)
-* [**PyTorch0.2 and above**](http://pytorch.org/): Make sure to install the Pytorch version for Python 3.6 with CUDA support (code only tested for CUDA 8.0). 
+* [**PyTorch 0.2 and above**](http://pytorch.org/): Make sure to install the Pytorch version for Python 3.6 with CUDA support (code only tested for CUDA 8.0). 
 * **Additional Python packages**: numpy, matplotlib, Pillow, torchvision and visdom (optional for --visualize flag)
 
 In Anaconda you can install with:
