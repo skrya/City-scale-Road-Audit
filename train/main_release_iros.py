@@ -246,7 +246,7 @@ def train(args, model, enc):
 
             inputs = Variable(images)
             targets = Variable(labels)
-            outputs = cascadeNet_model(inputs)
+            outputs = model(inputs)
 
             optimizer.zero_grad()
             loss = criterion(outputs, targets[:, 0])
@@ -505,11 +505,11 @@ def main(args):
         
         defSegNet = defectSegmentationNet(20,model)
     
-        defSegNet = torch.nn.DataParallel(defSegNet).cuda()
+        #defSegNet = torch.nn.DataParallel(defSegNet).cuda()
     
         road_segNet_file = importlib.import_module('erfnet2')
         roadSeg_model = road_segNet_file.Net(20)
-        roadSeg_model = torch.nn.DataParallel(roadSeg_model).cuda()
+        #roadSeg_model = torch.nn.DataParallel(roadSeg_model).cuda()
 
         cascadeNet_model = cascadeNet(roadSeg_model,defSegNet)
         cascadeNet_model = torch.nn.DataParallel(cascadeNet_model).cuda()
