@@ -9,11 +9,12 @@ If you use this software in your research, please cite our publications:
 For instructions please refer to the README on each folder:
 
 * [train](train) contains tools for training the network for semantic segmentation.
+** Use python main_iros_road_combined_train.py --savedir release_version_test --datadir /Neutron6/sudhirkumar/DataSet/release_version_v1/ --num-epochs <> --batch-size <> --decoder --iouVal
 * [trained_models](trained_models) Contains the trained models used in the papers. NOTE: the pytorch version is slightly different from the torch models.
 
 ## Requirements:
 
-* [**The dataset**](https://www.cityscapes-dataset.com/): Download the "leftImg8bit" for the RGB images and the "gtFine" for the labels.
+* [**The dataset**](http://bit.ly/road-audit-dataset/): Download the "leftImg8bit" for the RGB images and the "gtFine" for the labels.
 * [**Python 3.6**](https://www.python.org/): If you don't have Python3.6 in your system, I recommend installing it with [Anaconda](https://www.anaconda.com/download/#linux)
 * [**PyTorch 0.2 and above**](http://pytorch.org/): Make sure to install the Pytorch version for Python 3.6 with CUDA support (code only tested for CUDA 8.0). 
 * **Additional Python packages**: numpy, matplotlib, Pillow, torchvision and visdom (optional for --visualize flag)
