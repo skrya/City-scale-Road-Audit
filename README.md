@@ -8,7 +8,7 @@ If you use this software in your research, please cite our publications:
 ## Packages
 For instructions please refer to the README on each folder:
 
-* [train](train) contains tools for training the network for semantic segmentation.Use python main_iros_road_combined_train.py --savedir release_version_test --datadir /Neutron6/sudhirkumar/DataSet/release_version_v1/ --num-epochs <> --batch-size <> --decoder --iouVal
+* [train](train) contains tools for training the network for semantic segmentation.Use python main_release_iros.py --savedir <save_dir> --datadir <data_dir> --num-epochs <> --batch-size <> --decoder --iouVal
 * [trained_models](trained_models) Contains the trained models used in the papers. NOTE: the pytorch version is slightly different from the torch models.
 
 ## Requirements:

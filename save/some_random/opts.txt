@@ -1,0 +1,1 @@
+Namespace(batch_size=2, cuda=True, datadir='/Neutron6/sudhirkumar/DataSet/release_version_v1/', decoder=True, epochs_save=0, eval=False, height=512, iouTrain=False, iouVal=True, model='erfnet_multiscale', num_epochs=1, num_workers=4, port=8097, pretrainedEncoder=None, resume=False, savedir='some_random', state=None, steps_loss=50, steps_plot=50, visualize=False)
