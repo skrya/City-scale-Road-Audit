@@ -67,12 +67,13 @@ class cascadeNet(nn.Module):
         x[x != 0] = 255
         x[x == 0] = 1
         x[x == 255] = 0
+        road_mask = x
         x = torch.stack((x,x,x),1).float()
         inputs = (input.squeeze(0)*x.squeeze(0))
         if len(inputs) == 3 :
             inputs = inputs.unsqueeze(0)
         x = self.fine_grained_model(inputs)
-        return x
+        return x, road_mask
     
 NUM_CHANNELS = 3
 NUM_CLASSES = 10 
@@ -167,7 +168,7 @@ def train(args, model, enc):
     
     
     dataset_train = cityscapes(args.datadir, co_transform, 'train')
-    dataset_val = cityscapes(args.datadir, co_transform_val, 'val')
+    dataset_val = cityscapes(args.datadir, co_transform_val, 'test')
 
     loader = DataLoader(dataset_train, num_workers=args.num_workers, batch_size=args.batch_size, shuffle=True)
     loader_val = DataLoader(dataset_val, num_workers=args.num_workers, batch_size=args.batch_size, shuffle=False)
@@ -246,7 +247,7 @@ def train(args, model, enc):
 
             inputs = Variable(images)
             targets = Variable(labels)
-            outputs = model(inputs)
+            outputs, road_mask = model(inputs)
 
             optimizer.zero_grad()
             loss = criterion(outputs, targets[:, 0])
@@ -320,7 +321,7 @@ def train(args, model, enc):
             
             inputs = Variable(images, volatile=True)    #volatile flag makes it free backward or outputs for eval
             targets = Variable(labels, volatile=True)
-            outputs = model(inputs) 
+            outputs, road_mask = model(inputs) 
             
             loss = criterion(outputs, targets[:, 0])
             epoch_loss_val.append(loss.data[0])
@@ -342,8 +343,23 @@ def train(args, model, enc):
                     val_ct += 1
                     pred_img = outputs_cpu[i].max(0)[1].data.unsqueeze(0)
                     
+                    roadMask = road_mask[i].data.cpu()
+                    
+                    #print(type(roadMask))
+                    pred_img[roadMask == 0] = 255
+                    #predictionClr = ToPILImage()(Colorize()(pred_img.byte())) 
                     prediction = ToPILImage()(pred_img.byte())
                     
+                    #filenameSave = "./save_color_res/" + str(val_ct).zfill(3)+'.png'
+                    #filename_break = str(filename[0]).split('/')
+
+                    #filename_path = '/'.join(filename_break[-3:])
+
+                    #filenameSave = "./save_color_res/" + str(filename_path)
+                    
+                    #os.makedirs(os.path.dirname(filenameSave), exist_ok=True)
+
+                    #predictionClr.save(filenameSave)
                     
                     groundtruth = ToPILImage()(labels[i].cpu().byte())
                     
