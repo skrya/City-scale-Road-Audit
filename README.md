@@ -2,7 +2,7 @@
 Website - https://cvit.iiit.ac.in/research/projects/cvit-projects/city-scale-road-audit
 
 ## Publications
-Accepted at IROS. Will be published soon!!
+'City-Scale Road Audit System using Deep Learning' accepted at IROS 2018 - https://arxiv.org/abs/1811.10210
 
 If you use this software in your research, please cite our publications:
 ## Packages
